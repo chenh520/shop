@@ -1,0 +1,147 @@
+<template>
+  <div id="box"> 
+    <!-- <div class="md-modal modal-msg md-modal-transition md-show" > -->
+    <div class="md-modal modal-msg md-modal-transition" v-bind:class="mdShow?'md-show':''" >
+        <div id="main">
+            <div class="n-frame device-frame reg_frame">
+                <!-- <button class="md-close" v-on:click="close">关闭</button> -->
+                <div class="title-item dis_bot35 t_c">
+                    <h4 class="title-big">注册 </h4>
+                    
+                </div>
+                <div class="regbox" id="register_box">
+                    <form action="http://mi.shudong.wang/user.php" method="post" name="formUser" onsubmit="return register();">
+                        <input type="hidden" value="C4E1AB9A7DE79D7C750E8916875E7DBE" id="validate">
+                        <div class="phone_step1">
+                            <input type="hidden" id="sendtype">
+
+                            <div class="inputbg">
+                                <label class="labelbox">
+                      <input v-model="userName" type="text" name="username" id="username" onblur="is_registered(this.value);" onkeyup="is_registered(this.value);" placeholder="用户名">
+                  </label>
+                                <span class="t_text">用户名</span>
+                                <span class="error_icon"></span>
+                            </div>
+                            <div class="err_tip" id="username_notice"> <em></em> </div> 
+
+                            <!-- <div class="inputbg">
+                                <label class="labelbox">
+                      <input name="email" type="text" id="email" onblur="checkEmail(this.value);" onkeyup="checkEmail(this.value);" placeholder="email">
+                  </label>
+                                <span class="t_text">email</span>
+                                <span class="error_icon"></span>
+                            </div>
+                            <div class="err_tip" id="email_notice"><em></em> </div> -->
+
+                            <div class="inputbg">
+                                <label class="labelbox">
+                  <input v-model="userPwd" type="password" name="password" id="password1" onblur="check_password(this.value);" onkeyup="check_password(this.value);checkIntensity(this.value);" placeholder="密码">
+                  </label>
+                                <span class="t_text">密码</span>
+                                <span class="error_icon"></span>
+                            </div>
+                            <div class="err_tip" id="password_notice"> <em></em> </div>
+
+                            <div class="inputbg">
+                                <label class="labelbox">
+                    <input name="confirm_password" type="password" id="conform_password" onblur="check_conform_password(this.value);" onkeyup="check_conform_password(this.value);" placeholder="确认密码">
+                  </label>
+                                <span class="t_text">确认密码</span>
+                                <span class="error_icon"></span>
+                            </div>
+                            <div class="err_tip" id="conform_password_notice"> <em></em> </div>
+
+
+
+                            <div class="inputbg inputcode dis_box clearfix">
+                                <label class="labelbox label-code">
+                      <input type="text" class="code" name="captcha" maxlength="6" placeholder="验证码">
+                  </label>
+                                <span class="t_text">验证码</span>
+                                <span class="error_icon"></span>
+                                <img src="http://mi.shudong.wang/captcha.php?148237837" alt="captcha" class="icode_image code-image chkcode_img" onclick="this.src='captcha.php?'+Math.random()">
+                            </div>
+                            <div class="err_tip"> <em></em> </div>
+                            <div class="law">
+                                <label>
+                    <input name="agreement" type="checkbox" value="1" checked="checked" tabindex="5" class="remember-me">
+                    我已看过并接受《<a href="http://mi.shudong.wang/article.php?cat_id=-1" style="color:blue" target="_blank">用户协议</a>》</label>
+                            </div>
+                            <div class="err_tip"> <em></em> </div>
+                            <div class="fixed_bot mar_phone_dis1">
+                                <input name="act" type="hidden" value="act_register">
+                                <input type="hidden" name="back_act" value="">
+                                <input name="Submit" value="同意协议并注册" class="btn332 btn_reg_1 submit-step" v-on:click="wyzc">
+                            </div>
+                            <div class="trig">已有账号? <a href="/registernew" class="trigger-box">点击登录</a> </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+      </div>
+      <div class="md-overlay" v-show="mdShow">
+      </div>
+  </div>
+</template>
+
+<script>
+
+export default {
+  name: 'zcnew',
+  data(){
+       return {
+      userName:"",
+      userPwd:""
+    }
+  },
+  props: ["mdShow", "aaa"],
+    methods:{
+        wyzc:function(){
+
+         
+          // this.$router.push({path: "/", query:{'from':'reg'}})
+
+          window.location.href = "/?from=reg&"
+
+          return ;
+        
+            if(this.userName==""|| this.userPwd==""){
+                alert("请输入用户名或密码！");
+            }else if(this.userName.length < 5){
+                alert("用户名不能少于5位！");
+            }
+            else if(this.userPwd.length < 6){
+                alert("密码不能少于6位！")
+            }
+            else{
+                this.axios.post("/api/users/register",{
+                    userName:this.userName,
+                    userPwd:this.userPwd
+                })
+                .then((res)=>{
+                    if(status==0){
+                        alert("注册成功")
+
+
+                    }
+                    else{
+                        alert("注册失败请重新注册")
+                    }
+                })
+            }
+      }
+  
+    }
+ 
+}
+</script>
+
+<!-- Add "scoped" attribute to limit CSS to this component only -->
+<style scoped>
+.md-modal{
+    position: fixed;
+    top: 50%;
+    left: 36%;
+}
+</style>

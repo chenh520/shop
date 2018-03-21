@@ -1,15 +1,9 @@
 <template>
  <div class="hello">
+     <Navnew>热门商品</Navnew>
     <div class="box">
     </div>
-    <div class="nav-breadcrumb-wrap">
-        <div class="container">
-            <nav class="nav-breadcrumb">
-                <a href="/">Home</a>
-                <span>Goods</span>
-            </nav>
-        </div>
-    </div>
+    
     <div class="accessory-result-page accessory-page">
         <div class="container">
             <div class="filter-nav">
@@ -43,54 +37,19 @@
                 <div class="accessory-list-wrap">
                     <div class="accessory-list col-4">
                         <ul>
-                            <li>
+                            <li v-for="good in goods">
                                 <div class="pic">
-                                    <a href="#"><img src="../../static/img/1.jpg" alt=""></a>
+                                    <a href="#"><img v-bind:src="'../../static/img/'+good.productImage"  alt=""></a>
                                 </div>
                                 <div class="main">
-                                    <div class="name">XX</div>
-                                    <div class="price">999</div>
+                                    <div class="name">{{good.productName}}</div>
+                                    <div class="price">{{good.salePrice|qian}}</div>
                                     <div class="btn-area">
-                                        <a href="javascript:;" class="btn btn--m">加入购物车</a>
+                                        <a href="javascript:;" class="btn btn--m" v-on:click="jiar(good.productId)">加入购物车</a>
                                     </div>
                                 </div>
                             </li>
-                            <li>
-                                <div class="pic">
-                                    <a href="#"><img src="../../static/img/2.jpg" alt=""></a>
-                                </div>
-                                <div class="main">
-                                    <div class="name">XX</div>
-                                    <div class="price">1000</div>
-                                    <div class="btn-area">
-                                        <a href="javascript:;" class="btn btn--m">加入购物车</a>
-                                    </div>
-                                </div>
-                            </li>
-                            <li>
-                                <div class="pic">
-                                    <a href="#"><img src="../../static/img/3.jpg" alt=""></a>
-                                </div>
-                                <div class="main">
-                                    <div class="name">XX</div>
-                                    <div class="price">500</div>
-                                    <div class="btn-area">
-                                        <a href="javascript:;" class="btn btn--m">加入购物车</a>
-                                    </div>
-                                </div>
-                            </li>
-                            <li>
-                                <div class="pic">
-                                    <a href="#"><img src="../../static/img/4.jpg" alt=""></a>
-                                </div>
-                                <div class="main">
-                                    <div class="name">XX</div>
-                                    <div class="price">2499</div>
-                                    <div class="btn-area">
-                                        <a href="javascript:;" class="btn btn--m">加入购物车</a>
-                                    </div>
-                                </div>
-                            </li>
+                         
                         </ul>
                     </div>
                 </div>
@@ -125,141 +84,46 @@
     </div>
   </div>
 </footer> -->
-    <div class="site-footer">
-        <div class="container">
-            <div class="footer-service">
-                <!-- <ul class="list-service clearfix">
-                    <li>
-                        <a rel="nofollow" href="javascript:void(0)">
-                            <i class="iconfont"></i>1小时快修服务
-                        </a>
-                    </li>
-                    <li>
-                        <a rel="nofollow" href="javascript:void(0)">
-                            <i class="iconfont"></i>7天无理由退货
-                        </a>
-                    </li>
-                    <li>
-                        <a rel="nofollow" href="javascript:void(0)">
-                            <i class="iconfont"></i>15天免费换货
-                        </a>
-                    </li>
-                    <li>
-                        <a rel="nofollow" href="javascript:void(0)">
-                            <i class="iconfont"></i>满150元包邮
-                        </a>
-                    </li>
-                    <li>
-                        <a rel="nofollow" href="javascript:void(0)">
-                            <i class="iconfont"></i>520余家售后网点
-                        </a>
-                    </li>
-                </ul> -->
-            </div>
-            <div class="footer-links clearfix">
-                <div class="blank"></div>
-
-                <dl class="col-links">
-                    <dt>帮助中心</dt>
-                    <dd>
-                        <a href="article.php?id=9" target="_blank" title="配送方式" rel="nofollow">配送方式</a>
-                    </dd>
-                    <dd>
-                        <a href="article.php?id=10" target="_blank" title="支付方式" rel="nofollow">支付方式</a>
-                    </dd>
-                    <dd>
-                        <a href="article.php?id=11" target="_blank" title="购物指南" rel="nofollow">购物指南</a>
-                    </dd>
-
-                </dl>
-
-
-                <dl class="col-links">
-                    <dt>服务支持</dt>
-                    <dd>
-                        <a href="article.php?id=21" target="_blank" title="相关下载" rel="nofollow">相关下载</a>
-                    </dd>
-                    <dd>
-                        <a href="article.php?id=22" target="_blank" title="自助服务" rel="nofollow">自助服务</a>
-                    </dd>
-                    <dd>
-                        <a href="article.php?id=23" target="_blank" title="售后政策" rel="nofollow">售后政策</a>
-                    </dd>
-
-                </dl>
-
-
-                <dl class="col-links">
-                    <dt>vnshop</dt>
-                    <dd>
-                        <a href="article.php?id=12" target="_blank" title="预约亲临到店服务" rel="nofollow">预约亲临到店服务</a>
-                    </dd>
-                    <dd>
-                        <a href="article.php?id=13" target="_blank" title="服务网点" rel="nofollow">服务网点</a>
-                    </dd>
-                    <dd>
-                        <a href="article.php?id=14" target="_blank" title="vnshop" rel="nofollow">vnshop</a>
-                    </dd>
-
-                </dl>
-
-
-                <dl class="col-links">
-                    <dt>vnshop</dt>
-                    <dd>
-                        <a href="article.php?id=24" target="_blank" title="vnshop" rel="nofollow">vnshop</a>
-                    </dd>
-                    <dd>
-                        <a href="article.php?id=25" target="_blank" title="vnshop" rel="nofollow">vnshop</a>
-                    </dd>
-                    <dd>
-                        <a href="article.php?id=26" target="_blank" title="vnshop" rel="nofollow">vnshop</a>
-                    </dd>
-
-                </dl>
-
-
-                <dl class="col-links">
-                    <dt>vnshop</dt>
-                    <dd>
-                        <a href="article.php?id=15" target="_blank" title="官方微信" rel="nofollow">官方微信</a>
-                    </dd>
-                    <dd>
-                        <a href="article.php?id=16" target="_blank" title="vnshop" rel="nofollow">vnshop</a>
-                    </dd>
-                    <dd>
-                        <a href="article.php?id=17" target="_blank" title="新浪微博" rel="nofollow">新浪微博</a>
-                    </dd>
-
-                </dl>
-
-
-
-
-
-                <div class="col-contact">
-                    <p class="phone">400-023-3005</p>
-                    <p>周一至周日 8:00-18:00<br>（仅收市话费）</p>
-                    <a rel="nofollow" class="btn btn-line-primary btn-small">
-                        <i class="iconfont"></i> 24小时在线客服
-                    </a>
-                </div>
-            </div>
-        </div>
-    </div>
+  
   
   </div>
  
 </template>
 
 <script>
+import Navnew from"@/components/Navnew";
 export default {
   name: 'zhongj',
-  data () {
-    return {
-      msg: 'Welcome to Your Vue.js App'
-    }
+  data(){
+      return{
+          goods:[]
+      }
+  },
+  methods:{
+      jiar:function(productId){
+          this.axios.post("/api/goods/addCart", 
+          {productId:productId})
+          .then((res)=>{
+              var data=res.data
+              if(data.status=="0"){
+                  this.$store.commit("add")
+              }
+                
+          })
+       
+      }
+  },
+    mounted(){
+        this.axios.get("/static/mock/mock-goods.json")
+        .then((res)=>{
+                this.goods=res.data.data
+
+        })
+    },
+  components:{
+    Navnew
   }
+ 
 }
 </script>
 
