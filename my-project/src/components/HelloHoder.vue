@@ -64,7 +64,9 @@
         v-on:guanbi="closeModal"
         v-on:chenggong="loginOK"
     ></Loginnew>
-<zcnew  v-bind:md-show="showzc">
+<zcnew  v-bind:md-show="showzc"
+ v-on:guanbi="closeModal"
+>
 
 </zcnew>
   </div>
@@ -133,7 +135,9 @@ export default {
       
       closeModal() {   
           this.showLogin = false
+          this.showzc=false
       }
+    
   }
 }
 </script>
